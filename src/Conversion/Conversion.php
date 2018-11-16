@@ -237,7 +237,9 @@ class Conversion
     public function getResultExtension(string $originalFileExtension = ''): string
     {
         if ($this->shouldKeepOriginalImageFormat()) {
-            return $originalFileExtension;
+            if (in_array($originalFileExtension, ['jpg', 'pjpg', 'png', 'gif'])) {
+                return $originalFileExtension;
+            }
         }
 
         if ($manipulationArgument = $this->manipulations->getManipulationArgument('format')) {
